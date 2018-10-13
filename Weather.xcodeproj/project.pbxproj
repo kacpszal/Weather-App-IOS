@@ -15,6 +15,7 @@
 		4993F0B12171EA09004FC73C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4993F0AF2171EA09004FC73C /* LaunchScreen.storyboard */; };
 		4993F0BC2171EA09004FC73C /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993F0BB2171EA09004FC73C /* WeatherTests.swift */; };
 		4993F0C72171EA0A004FC73C /* WeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993F0C62171EA0A004FC73C /* WeatherUITests.swift */; };
+		4993F0D52171FD1C004FC73C /* DayWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993F0D42171FD1C004FC73C /* DayWeather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		4993F0C22171EA09004FC73C /* WeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4993F0C62171EA0A004FC73C /* WeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUITests.swift; sourceTree = "<group>"; };
 		4993F0C82171EA0A004FC73C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4993F0D42171FD1C004FC73C /* DayWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWeather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				4993F0A32171EA05004FC73C /* AppDelegate.swift */,
 				4993F0A52171EA05004FC73C /* ViewController.swift */,
+				4993F0D42171FD1C004FC73C /* DayWeather.swift */,
 				4993F0A72171EA05004FC73C /* Main.storyboard */,
 				4993F0AD2171EA09004FC73C /* Assets.xcassets */,
 				4993F0AF2171EA09004FC73C /* LaunchScreen.storyboard */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4993F0AC2171EA05004FC73C /* Weather.xcdatamodeld in Sources */,
+				4993F0D52171FD1C004FC73C /* DayWeather.swift in Sources */,
 				4993F0A62171EA05004FC73C /* ViewController.swift in Sources */,
 				4993F0A42171EA05004FC73C /* AppDelegate.swift in Sources */,
 			);
