@@ -51,6 +51,12 @@ class ViewController: UIViewController {
                 }
             }
             
+            let formatter = NumberFormatter()
+            formatter.usesGroupingSeparator = false
+            formatter.minimumFractionDigits = 0
+            formatter.maximumFractionDigits = 2
+            formatter.numberStyle = .decimal
+            
             let noDataString = "no data"
             self.dateLabel.text = DayWeather.allDaysWeather[self.numberOfDay].applicableDate
             self.weatherStateLabel.text = DayWeather.allDaysWeather[self.numberOfDay].weatherStateName
@@ -65,17 +71,17 @@ class ViewController: UIViewController {
                 self.maxTempLabel.text = noDataString
             }
             if let unwrappedWindSpeed = DayWeather.allDaysWeather[self.numberOfDay].windSpeed {
-                self.windSpeedLabel.text = "\(String(format: "%.2f", unwrappedWindSpeed)) mph"
+                self.windSpeedLabel.text = "\(formatter.string(from: unwrappedWindSpeed as NSNumber)!) mph"
             } else {
                 self.windSpeedLabel.text = noDataString
             }
             if let unwrappedWindDirection = DayWeather.allDaysWeather[self.numberOfDay].windDirection {
-                self.windDirectionLabel.text = "\(String(format: "%.2f", unwrappedWindDirection)) °"
+                self.windDirectionLabel.text = "\(formatter.string(from: unwrappedWindDirection as NSNumber)!) °"
             } else {
                 self.windDirectionLabel.text = noDataString
             }
             if let unwrappedAirPressure = DayWeather.allDaysWeather[self.numberOfDay].airPressure {
-                self.airPressureLabel.text = "\(String(format: "%.2f", unwrappedAirPressure)) hPa"
+                self.airPressureLabel.text = "\(formatter.string(from: unwrappedAirPressure as NSNumber)!) hPa"
             } else {
                 self.windSpeedLabel.text = noDataString
             }
