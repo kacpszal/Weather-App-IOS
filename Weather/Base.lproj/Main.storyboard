@@ -133,9 +133,12 @@
                                     <action selector="clickNextButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8nZ-Xl-pOo"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MSV-w4-H5M">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MSV-w4-H5M">
                                 <rect key="frame" x="132" y="417" width="150" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="B55-P9-gdR"/>
+                                    <constraint firstAttribute="width" constant="150" id="Hwe-it-rNE"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -175,11 +178,13 @@
                             <constraint firstItem="hpH-DB-iQo" firstAttribute="leading" secondItem="NRa-is-jnY" secondAttribute="leading" id="elr-U5-340"/>
                             <constraint firstItem="l7D-bz-J6g" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="9" id="fmx-lO-Af4"/>
                             <constraint firstItem="NRa-is-jnY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="g7e-BO-KuZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MSV-w4-H5M" secondAttribute="trailing" constant="132" id="h2w-Wt-AD3"/>
                             <constraint firstItem="Nox-84-KrZ" firstAttribute="leading" secondItem="SnJ-qr-G9H" secondAttribute="leading" id="hPW-AB-BQE"/>
                             <constraint firstItem="gj5-Fz-6ne" firstAttribute="trailing" secondItem="NRa-is-jnY" secondAttribute="trailing" id="i70-ms-h2C"/>
                             <constraint firstItem="zn5-0Y-MRt" firstAttribute="trailing" secondItem="SnJ-qr-G9H" secondAttribute="trailing" id="iW9-HC-oYP"/>
                             <constraint firstItem="XCr-9T-xmL" firstAttribute="firstBaseline" secondItem="LgN-Dh-GqR" secondAttribute="firstBaseline" id="jSN-BT-TvK"/>
                             <constraint firstItem="HkF-Db-g9l" firstAttribute="trailing" secondItem="SnJ-qr-G9H" secondAttribute="trailing" id="kYT-8G-v6a"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MSV-w4-H5M" secondAttribute="bottom" constant="169" id="kzT-GP-weC"/>
                             <constraint firstItem="hpH-DB-iQo" firstAttribute="trailing" secondItem="NRa-is-jnY" secondAttribute="trailing" id="mTo-nb-BMm"/>
                             <constraint firstItem="zn5-0Y-MRt" firstAttribute="leading" secondItem="SnJ-qr-G9H" secondAttribute="leading" id="oNi-n5-ZSs"/>
                             <constraint firstItem="XaS-qo-zyY" firstAttribute="leading" secondItem="NRa-is-jnY" secondAttribute="leading" id="okG-ZF-iun"/>

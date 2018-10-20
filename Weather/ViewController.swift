@@ -55,32 +55,32 @@ class ViewController: UIViewController {
             self.dateLabel.text = DayWeather.allDaysWeather[self.numberOfDay].applicableDate
             self.weatherStateLabel.text = DayWeather.allDaysWeather[self.numberOfDay].weatherStateName
             if let unwrappedMinTemp = DayWeather.allDaysWeather[self.numberOfDay].minTemp {
-                self.minTempLabel.text = "\(unwrappedMinTemp)"
+                self.minTempLabel.text = "\(Int(unwrappedMinTemp)) °C"
             } else {
                 self.minTempLabel.text = noDataString
             }
             if let unwrappedMaxTemp = DayWeather.allDaysWeather[self.numberOfDay].maxTemp {
-                self.maxTempLabel.text = "\(unwrappedMaxTemp)"
+                self.maxTempLabel.text = "\(Int(unwrappedMaxTemp)) °C"
             } else {
                 self.maxTempLabel.text = noDataString
             }
             if let unwrappedWindSpeed = DayWeather.allDaysWeather[self.numberOfDay].windSpeed {
-                self.windSpeedLabel.text = "\(unwrappedWindSpeed)"
+                self.windSpeedLabel.text = "\(String(format: "%.2f", unwrappedWindSpeed)) mph"
             } else {
                 self.windSpeedLabel.text = noDataString
             }
             if let unwrappedWindDirection = DayWeather.allDaysWeather[self.numberOfDay].windDirection {
-                self.windDirectionLabel.text = "\(unwrappedWindDirection)"
+                self.windDirectionLabel.text = "\(String(format: "%.2f", unwrappedWindDirection)) °"
             } else {
                 self.windDirectionLabel.text = noDataString
             }
             if let unwrappedAirPressure = DayWeather.allDaysWeather[self.numberOfDay].airPressure {
-                self.airPressureLabel.text = "\(unwrappedAirPressure)"
+                self.airPressureLabel.text = "\(String(format: "%.2f", unwrappedAirPressure)) hPa"
             } else {
                 self.windSpeedLabel.text = noDataString
             }
             if let unwrappedHumidity = DayWeather.allDaysWeather[self.numberOfDay].humidity {
-                self.humidityLabel.text = "\(unwrappedHumidity)"
+                self.humidityLabel.text = "\(unwrappedHumidity) %"
             } else {
                 self.humidityLabel.text = noDataString
             }
