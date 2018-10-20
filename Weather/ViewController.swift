@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet var imageView: UIImageView!
+    
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var weatherStateLabel: UILabel!
@@ -24,92 +26,111 @@ class ViewController: UIViewController {
     @IBOutlet var nextButton: UIButton!
     
     var numberOfDay = 0
+    var previousButtonShouldBeEnabled = false
+    var nextButtonShouldBeEnabled = true
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        DispatchQueue.main.async {
-            if(DayWeather.allDaysWeather.count != 0) {
-                let noDataString = "no data"
-                self.dateLabel.text = DayWeather.allDaysWeather[self.numberOfDay].applicableDate
-                self.weatherStateLabel.text = DayWeather.allDaysWeather[self.numberOfDay].weatherStateName
-                if let unwrappedMinTemp = DayWeather.allDaysWeather[self.numberOfDay].minTemp {
-                    self.minTempLabel.text = "\(unwrappedMinTemp)"
-                } else {
-                    self.minTempLabel.text = noDataString
+        
+        previousButton.isEnabled = previousButtonShouldBeEnabled
+        nextButton.isEnabled = nextButtonShouldBeEnabled
+        
+        if(numberOfDay < 0) {
+            numberOfDay = 0
+        }
+        
+        if(numberOfDay > DayWeather.allDaysWeather.count - 1) {
+            numberOfDay = DayWeather.allDaysWeather.count - 1
+        }
+        
+        if(DayWeather.allDaysWeather.count != 0) {
+            if let unwrappedWeatherStateAbbr = DayWeather.allDaysWeather[self.numberOfDay].weatherStateAbbr {
+                let image = try? UIImage(data: Data(contentsOf: URL(string: "https://www.metaweather.com/static/img/weather/png/64/\(unwrappedWeatherStateAbbr).png")!))
+                if let unwrappedImage = image {
+                    imageView.image = unwrappedImage
                 }
-                if let unwrappedMaxTemp = DayWeather.allDaysWeather[self.numberOfDay].maxTemp {
-                    self.maxTempLabel.text = "\(unwrappedMaxTemp)"
-                } else {
-                    self.maxTempLabel.text = noDataString
-                }
-                if let unwrappedWindSpeed = DayWeather.allDaysWeather[self.numberOfDay].windSpeed {
-                    self.windSpeedLabel.text = "\(unwrappedWindSpeed)"
-                } else {
-                    self.windSpeedLabel.text = noDataString
-                }
-                if let unwrappedWindDirection = DayWeather.allDaysWeather[self.numberOfDay].windDirection {
-                    self.windDirectionLabel.text = "\(unwrappedWindDirection)"
-                } else {
-                    self.windDirectionLabel.text = noDataString
-                }
-                if let unwrappedAirPressure = DayWeather.allDaysWeather[self.numberOfDay].airPressure {
-                    self.airPressureLabel.text = "\(unwrappedAirPressure)"
-                } else {
-                    self.windSpeedLabel.text = noDataString
-                }
-                if let unwrappedHumidity = DayWeather.allDaysWeather[self.numberOfDay].humidity {
-                    self.humidityLabel.text = "\(unwrappedHumidity)"
-                } else {
-                    self.humidityLabel.text = noDataString
-                }
+            }
+            
+            let noDataString = "no data"
+            self.dateLabel.text = DayWeather.allDaysWeather[self.numberOfDay].applicableDate
+            self.weatherStateLabel.text = DayWeather.allDaysWeather[self.numberOfDay].weatherStateName
+            if let unwrappedMinTemp = DayWeather.allDaysWeather[self.numberOfDay].minTemp {
+                self.minTempLabel.text = "\(unwrappedMinTemp)"
+            } else {
+                self.minTempLabel.text = noDataString
+            }
+            if let unwrappedMaxTemp = DayWeather.allDaysWeather[self.numberOfDay].maxTemp {
+                self.maxTempLabel.text = "\(unwrappedMaxTemp)"
+            } else {
+                self.maxTempLabel.text = noDataString
+            }
+            if let unwrappedWindSpeed = DayWeather.allDaysWeather[self.numberOfDay].windSpeed {
+                self.windSpeedLabel.text = "\(unwrappedWindSpeed)"
+            } else {
+                self.windSpeedLabel.text = noDataString
+            }
+            if let unwrappedWindDirection = DayWeather.allDaysWeather[self.numberOfDay].windDirection {
+                self.windDirectionLabel.text = "\(unwrappedWindDirection)"
+            } else {
+                self.windDirectionLabel.text = noDataString
+            }
+            if let unwrappedAirPressure = DayWeather.allDaysWeather[self.numberOfDay].airPressure {
+                self.airPressureLabel.text = "\(unwrappedAirPressure)"
+            } else {
+                self.windSpeedLabel.text = noDataString
+            }
+            if let unwrappedHumidity = DayWeather.allDaysWeather[self.numberOfDay].humidity {
+                self.humidityLabel.text = "\(unwrappedHumidity)"
+            } else {
+                self.humidityLabel.text = noDataString
             }
         }
     }
     
     @IBAction func clickPreviousButton(_ sender: Any) {
-        if(self.numberOfDay == 0) {
-            self.previousButton.isHidden = true
-            return
-        }
         self.numberOfDay -= 1
-        self.nextButton.isHidden = false
-        viewWillAppear(true)
+        if(self.numberOfDay == 0) {
+            self.previousButtonShouldBeEnabled = false
+        }
+        self.nextButtonShouldBeEnabled = true
+        DispatchQueue.main.async {
+            self.viewWillAppear(true)
+        }
     }
     
     @IBAction func clickNextButton(_ sender: Any) {
-        if(self.numberOfDay == DayWeather.allDaysWeather.count - 1) {
-            self.nextButton.isHidden = true
-        }
         self.numberOfDay += 1
-        self.previousButton.isHidden = false
-        viewWillAppear(true)
+        if(self.numberOfDay == DayWeather.allDaysWeather.count - 1) {
+            self.nextButtonShouldBeEnabled = false
+        }
+        self.previousButtonShouldBeEnabled = true
+        DispatchQueue.main.async {
+            self.viewWillAppear(true)
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        titleLabel.text = "Weather - Kacper Szalwa"
-        titleLabel.textAlignment = .center
+        DispatchQueue.main.async {
+            self.titleLabel.textAlignment = .center
+        }
         
         let urlString = URL(string: "https://www.metaweather.com/api/location/44418/")
         if let url = urlString {
             let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if error != nil {
-                    print(error)
+                    DispatchQueue.main.async {
+                        self.titleLabel.text = "ERROR OCCURED"
+                    }
                 } else {
                     if let usableData = data {
-                        //print(usableData)
-                        //print(response)
                         let json = try? JSONSerialization.jsonObject(with: usableData, options: [])
-                        //print(json)
                         DayWeather(json: json as! [String: Any])
-                        self.viewWillAppear(true)
-                        //for day in DayWeather.allDaysWeather {
-                          //  print(day)
-                        
-                       // }
-                        
+                        DispatchQueue.main.async {
+                            self.viewWillAppear(true)
+                        }
                     }
                 }
             }
